@@ -1,14 +1,13 @@
 from apps.question.models import Question, UserQuestionAnswer
 from rest_framework import serializers
+from apps.users.models import BotUser
+from django.shortcuts import get_object_or_404
 
 class QuestionSerializer(serializers.ModelSerializer):
-    user = serializers.CharField(source='user.user_id', read_only=True)
     class Meta:
         model = Question
         fields = '__all__'
-        # extra_kwargs = {
-        #     'user': {'read_only': True},
-        # }
+        
         
 class UserQuestionAnswerSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='user.user_id')
