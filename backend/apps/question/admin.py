@@ -5,13 +5,15 @@ from .models import Question,  UserQuestionAnswer
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ( 'code', 'subject', 'size', 'status', 'created_at')
-    list_filter = ('subject', 'size', 'status', 'created_at')
+    list_display = ('user', 'code', 'subject', 'size', 'is_active', 'created_at')
+    list_filter = ('user', 'subject', 'size', 'is_active', 'created_at')
     search_fields = ('code', 'subject',)
+    list_editable = ('is_active', 'user')
+    list_display_links = ('code', 'subject',)
 
 class UserQuestionAnswerAdmin(admin.ModelAdmin):
     list_display = ('user', 'question', 'score', 'start_time', 'end_time')
-    list_filter = ('user', 'question', 'score', 'status', 'start_time',)
+    list_filter = ('user', 'question', 'score', 'is_active', 'start_time',)
     search_fields = ('user', 'question', 'score',)
 
 
